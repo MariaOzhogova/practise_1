@@ -6,7 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-void Dfs(int v2, const std::vector<std::vector<int>>& afj, std::vector<bool>& visited) {
+void Dfs(int u, const std::vector<std::vector<int>>& adj, std::vector<bool>& visited) {
     visited[u] = true;
     for (int v : adj[u]) {
         if (!visited[v]) {
@@ -18,7 +18,7 @@ int main() {
     int n = 0;
     int m = 0;
     std::cin >> n >> m;
-    std::vector<std::vector>> adj(n + 1);
+    std::vector<std::vector<int>> adj(n + 1);
     for (int i = 0; i < m; i++) {
         int u = 0;
         int v = 0;
@@ -26,15 +26,15 @@ int main() {
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
-    std::vector<bool> visited(n + 1, false)
-    int components = 0;
+    std::vector<bool> visited(n + 1, false);
+        int components = 0;
     for (int i = 1; i <= n; i++) {
         if (!visited[i]) {
             components++;
-            Dfs(i, adj, visited)
+            Dfs(i, adj, visited);
         }
     }
-    std::cour << components - 1;
+    std::cout << components - 1;
     std::cout << std::endl;
     return 0;
 }
